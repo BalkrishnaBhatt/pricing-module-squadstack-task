@@ -4,46 +4,6 @@ import data from  '../data.json'
 
 let pos = localStorage.getItem("currentPosition") || 2;
 
-const tiers = [
-  {
-    name: 'Qualified 20',
-    href: '#',
-    leads: "20",
-    pricePerTransfer: "69",
-    platformPrice: '299',
-    totalPrice: "1,679",
-  },
-  {
-    name: 'Qualified 40',
-    href: '#',
-    leads: "40",
-    pricePerTransfer: "67",
-    platformPrice: '599',
-    totalPrice: "3,279",
-  },
-  {
-    name: 'Qualified 60',
-    href: '#',
-    leads: "60",
-    pricePerTransfer: "65",
-    platformPrice: '699',
-    totalPrice: "4,599",
-  },
-  {
-    name: 'Qualified 80',
-    href: '#',
-    leads: "80",
-    platformPrice: '799',
-    pricePerTransfer: "63",
-    totalPrice: "5,839",
-  },
-  {
-    name: 'Enterprise',
-    href: '#',
-    text: "Want more then 80 Qualified leads each month?"
-  },
-]
-
 const homePricePoints = [
   "100K-200K",
   "200K-300K",
@@ -54,14 +14,12 @@ const homePricePoints = [
 
 export default function Pricing() {
 
-  const [currentPosition, setcurrentPosition] = useState(pos);
+  const [currentPosition, setCurrentPosition] = useState(pos);
+  const [currentModelPosition, setCurrentModelPosition] = useState(0)
   const [open, setOpen] = useState(false)
 
-  console.log(data[currentPosition],"**88")
-  const cancelButtonRef = useRef(null)
-
   const onPriceChange = (i) => {
-    setcurrentPosition(i)
+    setCurrentPosition(i)
     localStorage.setItem('currentPosition', i);
     console.log(i, "currentPosition", localStorage.getItem("currentPosition"))
   }
@@ -71,18 +29,42 @@ export default function Pricing() {
   }
 
   function changeModelState(op){
+    parseURLParams()
     setOpen(!open)
   }
 
-  function openModel() {
+  function openModel(i) {
+    console.log(i)
+    setCurrentModelPosition(i)
     setOpen(!open)
   }
+
+  function parseURLParams() {
+    const url = window.location.href
+    // var queryStart = url.indexOf("?") + 1,
+    //     queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+    //     query = url.slice(queryStart, queryEnd - 1),
+    //     pairs = query.replace(/\+/g, " ").split("&"),
+    //     parms = {}, i, n, v, nv;
+
+    // if (query === url || query === "") return;
+
+    // for (i = 0; i < pairs.length; i++) {
+    //     nv = pairs[i].split("=", 2);
+    //     n = decodeURIComponent(nv[0]);
+    //     v = decodeURIComponent(nv[1]);
+
+    //     if (!parms.hasOwnProperty(n)) parms[n] = [];
+    //     parms[n].push(nv.length === 2 ? v : null);
+    // }
+    
+    console.log(url,"PARAM")
+}
 
   return (
     <div className="bg-white">
       <div className="max-w-full sm:py-24 sm:px-24 ">
         <div className="sm:flex sm:flex-col sm:align-center">
-
           <div className="w-full relative self-center mt-6 bg-gray-100 rounded-lg flex sm:mt-8">
             {
               homePricePoints.map((price, i) => (
@@ -151,7 +133,7 @@ export default function Pricing() {
 
               <button
                 href={tier.href}
-                onClick={() => openModel()}
+                onClick={() => openModel(i)}
                 className={i == 1 ? "mt-8 block w-full bg-orange-500 border border-orange-600 py-4 text-sm font-semibold text-white text-center hover:bg-orange-700"
                   : "mt-8 block w-full bg-wite border border-orange-400 py-4 text-sm font-semibold text-orange-400 text-center hover:bg-gray-100"}
               //className="mt-8 block w-full bg-orange-500 border border-orange-600 py-4 text-sm font-semibold text-white text-center hover:bg-orange-700"
@@ -169,7 +151,7 @@ export default function Pricing() {
         </div>
 
         {
-          open && < PriceModal data={tiers[currentPosition]} modelState={open} changeState={(op) => changeModelState(op)} />
+          open && <PriceModal currentPos={currentModelPosition} data={data[currentPosition]} modelState={open} changeState={(op) => changeModelState(op)} />
         }
 
 
