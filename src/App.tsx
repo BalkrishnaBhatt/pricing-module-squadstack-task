@@ -13,7 +13,7 @@ const App = (props: any) => {
       <Router>
         <Route exact path="/">
           {
-            window.navigator.onLine ? <Pricing /> : <NoInternet />
+            window.navigator.onLine ? <Pricing /> : <div className='text-center'><NoInternet /></div>
           }
           {/* <PriceModal /> */}
         </Route>

@@ -1,5 +1,7 @@
-import React, { Fragment, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PriceModal from './PriceModal';
+import data from  '../data.json'
+
 let pos = localStorage.getItem("currentPosition") || 2;
 
 const tiers = [
@@ -53,8 +55,9 @@ const homePricePoints = [
 export default function Pricing() {
 
   const [currentPosition, setcurrentPosition] = useState(pos);
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
 
+  console.log(data[currentPosition],"**88")
   const cancelButtonRef = useRef(null)
 
   const onPriceChange = (i) => {
@@ -67,8 +70,12 @@ export default function Pricing() {
     return classes.filter(Boolean).join(' ')
   }
 
+  function changeModelState(op){
+    setOpen(!open)
+  }
+
   function openModel() {
-    setOpen(true)
+    setOpen(!open)
   }
 
   return (
@@ -90,7 +97,7 @@ export default function Pricing() {
           </div>
         </div>
         <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-5">
-          {tiers.map((tier, i) => (
+          {data[currentPosition].map((tier, i) => (
             <div>
               {
                 i == 1 ?
@@ -161,7 +168,9 @@ export default function Pricing() {
           ))}
         </div>
 
-        < PriceModal />
+        {
+          open && < PriceModal data={tiers[currentPosition]} modelState={open} changeState={(op) => changeModelState(op)} />
+        }
 
 
       </div>
