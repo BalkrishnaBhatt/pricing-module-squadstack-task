@@ -28,7 +28,6 @@ export default function Pricing() {
   }
 
   function changeModelState(op) {
-    parseURLParams()
     setOpen(!open)
   }
 
