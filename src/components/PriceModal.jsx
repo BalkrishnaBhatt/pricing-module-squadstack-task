@@ -19,12 +19,11 @@ export default function PriceModal(props) {
 
     function showData(e) {
         e.preventDefault()
-        alert(`User Name = ${formData}` );
+        alert(`User Name = ${formData}`);
         changeModel()
-        console.log(e, "data", formData)
     }
 
-    function changeForm(e){
+    function changeForm(e) {
         setFormData(e.target.value)
     }
 
@@ -83,12 +82,12 @@ export default function PriceModal(props) {
 
                                                     <div className="col-span-6">
                                                         <label for="email-address" className="block text-xs font-bold text-gray-600">Name</label>
-                                                        <input onChange={(e)=> changeForm(e, "name")} type="text" name="email-address" id="email-address" className="mt-1 focus:ring-indigo-500 py-1 px-3 border border-gray-300 focus:border-gray-200 block w-full shadow-sm sm:text-lg border-gray-300 rounded-md" />
+                                                        <input onChange={(e) => changeForm(e, "name")} type="text" name="email-address" id="email-address" className="mt-1 focus:ring-indigo-500 py-1 px-3 border border-gray-300 focus:border-gray-200 block w-full shadow-sm sm:text-lg border-gray-300 rounded-md" />
                                                     </div>
 
                                                     <div className="col-span-6 sm:col-span-3">
                                                         <label for="first-name" className="block text-xs font-bold text-gray-600">E-mail Address</label>
-                                                        <input  type="text" name="first-name" id="first-name" className="mt-1 focus:ring-indigo-500 py-1 px-3 border border-gray-300 focus:border-gray-200 block w-full shadow-sm sm:text-lg border-gray-300 rounded-md" />
+                                                        <input type="text" name="first-name" id="first-name" className="mt-1 focus:ring-indigo-500 py-1 px-3 border border-gray-300 focus:border-gray-200 block w-full shadow-sm sm:text-lg border-gray-300 rounded-md" />
                                                     </div>
 
                                                     <div className="col-span-6 sm:col-span-3">

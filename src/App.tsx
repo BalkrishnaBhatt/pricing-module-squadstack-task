@@ -4,7 +4,6 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Pricing from './components/Pricing';
 import NoInternet from './components/NoInternet';
-import PriceModal from './components/PriceModal';
 
 const App = (props: any) => {
 
@@ -15,7 +14,6 @@ const App = (props: any) => {
           {
             window.navigator.onLine ? <Pricing /> : <div className='text-center'><NoInternet /></div>
           }
-          {/* <PriceModal /> */}
         </Route>
       </Router>
     </>

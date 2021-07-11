@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import PriceModal from './PriceModal';
-import data from  '../data.json'
+import data from '../data.json'
 
 let pos = localStorage.getItem("currentPosition") || 2;
 
@@ -21,45 +21,21 @@ export default function Pricing() {
   const onPriceChange = (i) => {
     setCurrentPosition(i)
     localStorage.setItem('currentPosition', i);
-    console.log(i, "currentPosition", localStorage.getItem("currentPosition"))
   }
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
 
-  function changeModelState(op){
+  function changeModelState(op) {
     parseURLParams()
     setOpen(!open)
   }
 
   function openModel(i) {
-    console.log(i)
     setCurrentModelPosition(i)
     setOpen(!open)
   }
-
-  function parseURLParams() {
-    const url = window.location.href
-    // var queryStart = url.indexOf("?") + 1,
-    //     queryEnd   = url.indexOf("#") + 1 || url.length + 1,
-    //     query = url.slice(queryStart, queryEnd - 1),
-    //     pairs = query.replace(/\+/g, " ").split("&"),
-    //     parms = {}, i, n, v, nv;
-
-    // if (query === url || query === "") return;
-
-    // for (i = 0; i < pairs.length; i++) {
-    //     nv = pairs[i].split("=", 2);
-    //     n = decodeURIComponent(nv[0]);
-    //     v = decodeURIComponent(nv[1]);
-
-    //     if (!parms.hasOwnProperty(n)) parms[n] = [];
-    //     parms[n].push(nv.length === 2 ? v : null);
-    // }
-    
-    console.log(url,"PARAM")
-}
 
   return (
     <div className="bg-white">
